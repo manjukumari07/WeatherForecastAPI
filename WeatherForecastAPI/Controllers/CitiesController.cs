@@ -23,9 +23,9 @@ namespace WeatherForecastAPI.Controllers
 
         // GET api/weather/cities
         [HttpGet()]
-        public ActionResult GetCities()
+        public async Task<ActionResult<WeatherModel>> GetCities()
         {
-            var weatherlist = _weatherService.GetWeatherReport();
+            var weatherlist = await _weatherService.GetWeatherReport();
             if (weatherlist.Any())
             {
                 return Ok(weatherlist);
@@ -33,16 +33,17 @@ namespace WeatherForecastAPI.Controllers
             return NotFound($"No Record");
         }
 
+
         // GET api/weather/cities/citiyID
         // GET api/weather/cities/citiyID? date = yyyy - MM - dd
         [HttpGet("{cityId}")]
-        public ActionResult GetCitiesByIdDate(int cityId, string date)
+        public async Task<ActionResult> GetCitiesByIdDate(int cityId, string date)
         {
             try
             {
                 if (!string.IsNullOrEmpty(date))
                 {
-                    var weatherlistByDate = _weatherService.GetWeatherReportByIDandDate(cityId, date);
+                    var weatherlistByDate = await _weatherService.GetWeatherReportByIDandDate(cityId, date);
                     if (weatherlistByDate.Any())
                     {
                         return Ok(weatherlistByDate);
@@ -51,7 +52,7 @@ namespace WeatherForecastAPI.Controllers
                 }
                 else
                 {
-                    var weatherlistById = _weatherService.GetWeatherReportByCityID(cityId);
+                    var weatherlistById = await _weatherService.GetWeatherReportByCityID(cityId);
                     if (weatherlistById.Any())
                     {
                         return Ok(weatherlistById);

@@ -7,6 +7,6 @@ namespace WeatherForecastAPI.Repository
 {
     public interface IWeatherRepository
     {
-        List<WeatherModel> GetWeatherReport();
+        Task<IEnumerable<WeatherModel>> GetWeatherReport();
     }
 }

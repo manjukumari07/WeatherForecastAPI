@@ -8,8 +8,8 @@ namespace WeatherForecastAPI.Service
 {
     public interface IWeatherService
     {
-        List<WeatherModel> GetWeatherReport();
-        List<WeatherModel> GetWeatherReportByCityID(int cityId);
-        List<WeatherModel> GetWeatherReportByIDandDate(int cityId, string date);
+        Task<IEnumerable<WeatherModel>> GetWeatherReport();
+        Task<IEnumerable<WeatherModel>> GetWeatherReportByCityID(int cityId);
+        Task<IEnumerable<WeatherModel>> GetWeatherReportByIDandDate(int cityId, string date);
     }
 }

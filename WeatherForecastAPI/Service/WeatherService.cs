@@ -15,20 +15,20 @@ namespace WeatherForecastAPI.Service
         {
             _weatherRepository = weatherRepository ?? throw new ArgumentNullException(nameof(weatherRepository));
         }
-        public List<WeatherModel> GetWeatherReport()
+        public async Task<IEnumerable<WeatherModel>> GetWeatherReport()
         {
-            return (_weatherRepository.GetWeatherReport());
+            return (await _weatherRepository.GetWeatherReport());
         }
 
-        public List<WeatherModel> GetWeatherReportByCityID(int cityId)
+        public async Task<IEnumerable<WeatherModel>> GetWeatherReportByCityID(int cityId)
         {
-            var weatherList = _weatherRepository.GetWeatherReport();
+            var weatherList = await _weatherRepository.GetWeatherReport();
             return weatherList.Where(x => x.ID == cityId).ToList();
         }
 
-        public List<WeatherModel> GetWeatherReportByIDandDate(int cityId, string date)
+        public async Task<IEnumerable<WeatherModel>> GetWeatherReportByIDandDate(int cityId, string date)
         {
-            var weatherList = _weatherRepository.GetWeatherReport();
+            var weatherList = await _weatherRepository.GetWeatherReport();
             return (weatherList.Where(x => x.ID == cityId).Where(x => x.Date == date)).ToList();
         }
     }

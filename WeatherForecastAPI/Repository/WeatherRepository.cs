@@ -8,9 +8,9 @@ namespace WeatherForecastAPI.Repository
 {
     public class WeatherRepository : IWeatherRepository
     {
-        public List<WeatherModel> GetWeatherReport()
+        public Task<IEnumerable<WeatherModel>> GetWeatherReport()
         {
-            List<WeatherModel> items = new List<WeatherModel>()
+            IEnumerable<WeatherModel> weatherlist = new List<WeatherModel>()
         {
             new WeatherModel()
             {
@@ -49,7 +49,7 @@ namespace WeatherForecastAPI.Repository
                 Summary= "sunny"
             }
         };
-            return (items);
+            return (Task.FromResult(weatherlist));
         }
     }
 }
