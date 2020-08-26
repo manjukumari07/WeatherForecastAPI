@@ -6,11 +6,6 @@ using WeatherForecastAPI.Model;
 
 namespace WeatherForecastAPI.Repository
 {
-    public interface IWeatherRepository
-    {
-        List<WeatherModel> GetWeatherReport();
-    }
-
     public class WeatherRepository : IWeatherRepository
     {
         public List<WeatherModel> GetWeatherReport()
